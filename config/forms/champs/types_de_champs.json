@@ -148,6 +148,10 @@
                             "type": "search",
                             "label": "Rechercher...",
                             "required": false,
+                            "help": "Ce champ est configuré comme un 'floating label'.",
+                            "help_attr": {
+                                "class": "text-secondary fst-italic"
+                            },
                             "attr": {
                                 "class": "pt-4",
                                 "placeholder": "Votre message..."
@@ -172,6 +176,10 @@
                             "key": "textarea_field",
                             "type": "textarea",
                             "label": "Votre message...",
+                            "help": "Ce champ est configuré comme un 'floating label'.",
+                            "help_attr": {
+                                "class": "text-secondary fst-italic"
+                            },
                             "required": false,
                             "constraints": {
                                 "Length": {

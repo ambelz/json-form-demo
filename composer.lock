@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a20e0fe006af49689a4cf13e94168794",
+    "content-hash": "8324f7df7057de49fabb6e3bfd512f7b",
     "packages": [
         {
             "name": "ambelz/json-to-form",

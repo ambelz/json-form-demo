@@ -7,13 +7,13 @@
     <!-- En-tête de la page -->
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">
-            <i class="bi bi-file-earmark-text text-primary me-2"></i>
+            <twig:ux:icon name="tabler:file-description" class="text-primary me-2" />
             Formulaire : {{ formTitle }}
         </h1>
         <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group me-2">
                 <a href="{{ path('demo_index') }}" class="btn btn-sm btn-outline-secondary">
-                    <i class="bi bi-arrow-left me-1"></i>Retour
+                    <twig:ux:icon name="tabler:arrow-left" class="me-1" />Retour
                 </a>
             </div>
         </div>
@@ -24,7 +24,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="{{ path('demo_index') }}" class="text-decoration-none">
-                    <i class="bi bi-house me-1"></i>Accueil
+                    <twig:ux:icon name="tabler:home" class="me-1" />Accueil
                 </a>
             </li>
             <li class="breadcrumb-item">
@@ -41,7 +41,7 @@
         <div class="row align-items-center">
             <div class="col-md-8">
                 <h5 class="alert-heading mb-2">
-                    <i class="bi bi-lightning-charge text-warning me-2"></i>
+                    <twig:ux:icon name="tabler:bolt" class="text-warning me-2" />
                     Technologie : Symfony UX LiveComponent
                 </h5>
                 <p class="mb-0">
@@ -52,7 +52,7 @@
             </div>
             <div class="col-md-4 text-end">
                 <div class="badge bg-primary fs-6 p-2">
-                    <i class="bi bi-gear-fill me-1"></i>
+                    <twig:ux:icon name="tabler:settings" class="me-1" />
                     JSON → Formulaire Dynamique
                 </div>
             </div>
@@ -74,29 +74,29 @@
             <div class="card border-0 shadow-sm">
                 <div class="card-header bg-light">
                     <h6 class="mb-0 text-primary">
-                        <i class="bi bi-cpu me-2"></i>Technologies utilisées
+                        <twig:ux:icon name="tabler:cpu" class="me-2" />Technologies utilisées
                     </h6>
                 </div>
                 <div class="card-body">
                     <ul class="list-unstyled mb-0">
                         <li class="mb-2">
-                            <i class="bi bi-check-circle text-success me-2"></i>
+                            <twig:ux:icon name="tabler:circle-check" class="text-success me-2" />
                             <strong>Symfony 7</strong> - Framework PHP moderne
                         </li>
                         <li class="mb-2">
-                            <i class="bi bi-check-circle text-success me-2"></i>
+                            <twig:ux:icon name="tabler:circle-check" class="text-success me-2" />
                             <strong>Symfony UX LiveComponent</strong> - Interactivité temps réel
                         </li>
                         <li class="mb-2">
-                            <i class="bi bi-check-circle text-success me-2"></i>
+                            <twig:ux:icon name="tabler:circle-check" class="text-success me-2" />
                             <strong>Bootstrap 5</strong> - Interface responsive
                         </li>
                         <li class="mb-2">
-                            <i class="bi bi-check-circle text-success me-2"></i>
+                            <twig:ux:icon name="tabler:circle-check" class="text-success me-2" />
                             <strong>JSON Schema</strong> - Structure de formulaire
                         </li>
                         <li>
-                            <i class="bi bi-check-circle text-success me-2"></i>
+                            <twig:ux:icon name="tabler:circle-check" class="text-success me-2" />
                             <strong>Symfony Validator</strong> - Validation côté serveur
                         </li>
                     </ul>
@@ -108,29 +108,29 @@
             <div class="card border-0 shadow-sm">
                 <div class="card-header bg-light">
                     <h6 class="mb-0 text-primary">
-                        <i class="bi bi-star me-2"></i>Fonctionnalités
+                        <twig:ux:icon name="tabler:star" class="me-2" />Fonctionnalités
                     </h6>
                 </div>
                 <div class="card-body">
                     <ul class="list-unstyled mb-0">
                         <li class="mb-2">
-                            <i class="bi bi-lightning text-warning me-2"></i>
+                            <twig:ux:icon name="tabler:bolt" class="text-warning me-2" />
                             <strong>Temps réel</strong> - Validation instantanée
                         </li>
                         <li class="mb-2">
-                            <i class="bi bi-shield-lock text-primary me-2"></i>
+                            <twig:ux:icon name="tabler:shield-lock" class="text-primary me-2" />
                             <strong>Sécurisé</strong> - Protection CSRF et validation
                         </li>
                         <li class="mb-2">
-                            <i class="bi bi-phone text-info me-2"></i>
+                            <twig:ux:icon name="tabler:device-mobile" class="text-info me-2" />
                             <strong>Responsive</strong> - Compatible mobile/desktop
                         </li>
                         <li class="mb-2">
-                            <i class="bi bi-eye text-secondary me-2"></i>
+                            <twig:ux:icon name="tabler:eye" class="text-secondary me-2" />
                             <strong>Mode démo</strong> - Pas d'enregistrement réel
                         </li>
                         <li>
-                            <i class="bi bi-code-square text-dark me-2"></i>
+                            <twig:ux:icon name="tabler:code" class="text-dark me-2" />
                             <strong>JSON visible</strong> - Structure transparente
                         </li>
                     </ul>
