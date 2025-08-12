@@ -338,24 +338,6 @@
                             "type": "datetime",
                             "label": "Date et heure",
                             "required": false
-                        },
-                        {
-                            "key": "datetime_local_field",
-                            "type": "datetime-local",
-                            "label": "Date et heure locale",
-                            "required": false
-                        },
-                        {
-                            "key": "month_field",
-                            "type": "month",
-                            "label": "Mois",
-                            "required": false
-                        },
-                        {
-                            "key": "week_field",
-                            "type": "week",
-                            "label": "Semaine",
-                            "required": false
                         }
                     ]
                 }

@@ -25,7 +25,7 @@ return (new PhpCsFixer\Config())
     ->setRules([
         '@Symfony' => true,
         '@Symfony:risky' => true,
-        'header_comment' => ['header' => $fileHeaderComment, 'separate' => 'both'],
+        'header_comment' => false,
         'linebreak_after_opening_tag' => true,
         'mb_str_functions' => true,
         'no_php4_constructor' => true,

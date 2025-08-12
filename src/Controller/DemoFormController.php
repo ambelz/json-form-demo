@@ -5,16 +5,14 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/demo')]
 class DemoFormController extends AbstractController
 {
-    private const JSON_FORMS_PATH = __DIR__ . '/../../config/forms/';
+    private const JSON_FORMS_PATH = __DIR__.'/../../config/forms/';
 
     public function __construct()
     {
@@ -29,8 +27,8 @@ class DemoFormController extends AbstractController
     #[Route('/form/{category}/{formName}', name: 'demo_form')]
     public function showForm(string $category, string $formName): Response
     {
-        $jsonFile = self::JSON_FORMS_PATH . $category . '/' . $formName . '.json';
-        
+        $jsonFile = self::JSON_FORMS_PATH.$category.'/'.$formName.'.json';
+
         if (!file_exists($jsonFile)) {
             throw new NotFoundHttpException("Formulaire '{$formName}' non trouvé dans la catégorie '{$category}'");
         }
