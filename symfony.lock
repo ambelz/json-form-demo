@@ -308,6 +308,9 @@
             "templates/base.html.twig"
         ]
     },
+    "symfony/ux-dropzone": {
+        "version": "v2.29.1"
+    },
     "symfony/ux-icons": {
         "version": "2.23",
         "recipe": {

@@ -1,0 +1,17 @@
+<div {{ attributes }}>
+    {{ form(form, {
+        attr: {
+            'data-action': 'live#action',
+            'data-live-action-param': 'files|save'
+        }
+    }) }}
+
+    {% if this.submitLoading %}
+        <div class="upload-loader fixed top-0 left-0 w-full h-full z-50 flex items-center justify-center">
+            <div class="loader-content">
+                <div class="spinner"></div>
+                <p>Traitement en cours...</p>
+            </div>
+        </div>
+    {% endif %}
+</div>
