@@ -1,8 +1,3 @@
-{#
-   This is the base template used as the application layout which contains the
-   common elements and decorates all the other templates.
-   See https://symfony.com/doc/current/templates.html#template-inheritance-and-layouts
-#}
 <!DOCTYPE html>
 <html lang="{{ app.locale }}">
     <head>
@@ -12,10 +7,6 @@
         <title>{% block title %}Symfony Demo application{% endblock %}</title>
         <link rel="alternate" type="application/rss+xml" title="{{ 'rss.title'|trans }}" href="{{ path('blog_rss') }}">
 
-        {#
-            Those two blocks defines frontend entrypoint for CSS and JavaScript assets
-            See https://symfony.com/doc/current/frontend.html
-        #}
         {% block stylesheets %}{% endblock %}
         {% block javascripts %}
             {% block importmap %}{{ importmap('app') }}{% endblock %}
@@ -23,197 +14,13 @@
         <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
     </head>
 
-    <body id="{% block body_id %}{% endblock %}">
-        <div class="row">
-            <aside class="col-lg-3 col-md-4 col-sm-12 d-flex flex-column">
-                <div class="p-4 h3 text-center">
-                    Ambelz
+    <body id="{% block body_id %}{% endblock %}" class="p-2">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-9 col-md-8 col-sm-12">
+                    {% block body %}{% endblock %}
                 </div>
-                <div class="border-top border-gray flex-grow-1">
-                    <!-- Menu responsive avec collapse pour mobile -->
-                    <div class="d-md-none p-3">
-                        <button class="btn btn-outline-primary w-100" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-expanded="false" aria-controls="sidebarMenu">
-                            <twig:ux:icon name="tabler:menu-2" /> Menu des cas d'usage
-                        </button>
-                    </div>
-                    
-                    <div class="collapse d-md-block" id="sidebarMenu">
-                        <nav class="nav flex-column p-3">
-                            <h6 class="nav-header text-muted text-uppercase fw-bold mb-3">Ambelz - Vitrine</h6>
-                            
-                            <!-- Découverte du Bundle -->
-                            <div class="mb-3">
-                                <h6 class="text-secondary fw-semibold mb-2">
-                                    <twig:ux:icon name="tabler:book" /> Découverte du Bundle
-                                </h6>
-                                
-                                <div class="mb-2">
-                                    <a href="{{ path('demo_form', {category: 'champs', formName: 'types_de_champs'}) }}" class="nav-link ps-3 py-1 text-decoration-none">
-                                        <twig:ux:icon name="tabler:apps" /> Tous les types de champs
-                                    </a>
-                                </div>
-                                <div class="nav-link ps-3 py-1 small text-muted">
-                                    <twig:ux:icon name="tabler:hierarchy-2" /> Dépendances entre questions <small class="text-warning">(Bientôt disponible)</small>
-                                </div>
-                                <div class="nav-link ps-3 py-1 small text-muted">
-                                    <twig:ux:icon name="tabler:layout-grid" /> Modes d'affichage <small class="text-warning">(Bientôt disponible)</small>
-                                </div>
-                            </div>
-                            
-                            <!-- Cas d'usage -->
-                            <div class="mb-3">
-                                <h6 class="text-secondary fw-semibold mb-2">
-                                    <twig:ux:icon name="tabler:category" /> Cas d'usage
-                                </h6>
-                                
-                                <!-- Authentification -->
-                                <div class="mb-2">
-                                    <button class="btn btn-link nav-link ps-3 py-1 w-100 text-start collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#authForms" aria-expanded="false">
-                                        <twig:ux:icon name="tabler:user-check" /> Authentification <twig:ux:icon name="tabler:chevron-down" class="float-end" />
-                                    </button>
-                                    <div class="collapse" id="authForms">
-                                        <a href="{{ path('demo_form', {category: 'authentification', formName: 'inscription'}) }}" class="nav-link ps-5 py-1 small text-decoration-none"><twig:ux:icon name="tabler:user-plus" /> Inscription</a>
-                                        <a href="{{ path('demo_form', {category: 'authentification', formName: 'connexion'}) }}" class="nav-link ps-5 py-1 small text-decoration-none"><twig:ux:icon name="tabler:login" /> Connexion</a>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-key"></i> Mot de passe oublié <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-shield-lock"></i> Changement mot de passe <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-person-gear"></i> Profil utilisateur <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-person-x"></i> Suppression compte <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-envelope-check"></i> Vérification email <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-shield-check"></i> Authentification 2FA <small class="text-warning">(Bientôt disponible)</small></div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Communication -->
-                                <div class="mb-2">
-                                    <button class="btn btn-link nav-link ps-3 py-1 w-100 text-start collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#commForms" aria-expanded="false">
-                                        <twig:ux:icon name="tabler:message-2" /> Communication <twig:ux:icon name="tabler:chevron-down" class="float-end" />
-                                    </button>
-                                    <div class="collapse" id="commForms">
-                                        <a href="{{ path('demo_form', {category: 'communication', formName: 'contact'}) }}" class="nav-link ps-5 py-1 small text-decoration-none"><twig:ux:icon name="tabler:mail" /> Contact simple</a>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-headset"></i> Contact support <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-newspaper"></i> Newsletter <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-info-circle"></i> Demande d'information <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-calendar-event"></i> Prise de rendez-vous <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-chat-heart"></i> Feedback produit <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-exclamation-triangle"></i> Signalement <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-handshake"></i> Demande partenariat <small class="text-warning">(Bientôt disponible)</small></div>
-                                    </div>
-                                </div>
-                                
-                                <!-- E-commerce -->
-                                <div class="mb-2">
-                                    <button class="btn btn-link nav-link ps-3 py-1 w-100 text-start collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#ecommForms" aria-expanded="false">
-                                        <twig:ux:icon name="tabler:shopping-cart" /> E-commerce <twig:ux:icon name="tabler:chevron-down" class="float-end" />
-                                    </button>
-                                    <div class="collapse" id="ecommForms">
-                                        <a href="{{ path('demo_form', {category: 'ecommerce', formName: 'commande_produit'}) }}" class="nav-link ps-5 py-1 small text-decoration-none"><twig:ux:icon name="tabler:package" /> Commande produit</a>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-calculator"></i> Demande de devis <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-receipt"></i> Facturation <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-arrow-return-left"></i> Retour produit <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-star"></i> Avis client <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-heart"></i> Liste de souhaits <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-arrows-collapse"></i> Comparateur <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-arrow-repeat"></i> Abonnement <small class="text-warning">(Bientôt disponible)</small></div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Ressources Humaines -->
-                                <div class="mb-2">
-                                    <button class="btn btn-link nav-link ps-3 py-1 w-100 text-start collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rhForms" aria-expanded="false">
-                                        <twig:ux:icon name="tabler:building" /> Ressources Humaines <twig:ux:icon name="tabler:chevron-down" class="float-end" />
-                                    </button>
-                                    <div class="collapse" id="rhForms">
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-file-person"></i> Candidature emploi <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-clipboard-data"></i> Évaluation employé <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-calendar-x"></i> Demande de congés <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-receipt-cutoff"></i> Note de frais <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-mortarboard"></i> Formation <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-clipboard-pulse"></i> Enquête interne <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-chat-square-dots"></i> Entretien annuel <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-door-open"></i> Démission <small class="text-warning">(Bientôt disponible)</small></div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Enquêtes & Sondages -->
-                                <div class="mb-2">
-                                    <button class="btn btn-link nav-link ps-3 py-1 w-100 text-start collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#surveyForms" aria-expanded="false">
-                                        <twig:ux:icon name="tabler:clipboard-check" /> Enquêtes & Sondages <twig:ux:icon name="tabler:chevron-down" class="float-end" />
-                                    </button>
-                                    <div class="collapse" id="surveyForms">
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-emoji-smile"></i> Satisfaction client <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-graph-up"></i> Étude de marché <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-check2-square"></i> Sondage politique <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-lightbulb"></i> Enquête produit <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-question-circle"></i> Quiz interactif <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-award"></i> Évaluation formation <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-calendar-event"></i> Feedback événement <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-clipboard-heart"></i> Questionnaire médical <small class="text-warning">(Bientôt disponible)</small></div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Légal & Compliance -->
-                                <div class="mb-2">
-                                    <button class="btn btn-link nav-link ps-3 py-1 w-100 text-start collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#legalForms" aria-expanded="false">
-                                        <twig:ux:icon name="tabler:shield-check" /> Légal & Compliance <twig:ux:icon name="tabler:chevron-down" class="float-end" />
-                                    </button>
-                                    <div class="collapse" id="legalForms">
-                                        <a href="{{ path('demo_form', {category: 'legal', formName: 'parcours_kyc'}) }}" class="nav-link ps-5 py-1 small text-decoration-none"><twig:ux:icon name="tabler:briefcase" /> Parcours KYC</a>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-shield-lock"></i> Consentement RGPD <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-file-earmark-text"></i> Déclaration fiscale <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-pen"></i> Contrat en ligne <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-exclamation-octagon"></i> Déclaration incident <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-clipboard-check"></i> Audit interne <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-file-earmark-x"></i> Plainte officielle <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-truck"></i> Déclaration douanière <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-bank"></i> Conformité secteur <small class="text-warning">(Bientôt disponible)</small></div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Upload & Documents -->
-                                <div class="mb-2">
-                                    <button class="btn btn-link nav-link ps-3 py-1 w-100 text-start collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#uploadForms" aria-expanded="false">
-                                        <twig:ux:icon name="tabler:cloud-upload" /> Upload & Documents <twig:ux:icon name="tabler:chevron-down" class="float-end" />
-                                    </button>
-                                    <div class="collapse" id="uploadForms">
-                                        <a href="{{ path('demo_form', {category: 'upload', formName: 'upload_documents'}) }}" class="nav-link ps-5 py-1 small text-decoration-none"><twig:ux:icon name="tabler:file-upload" /> Upload de documents</a>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-files"></i> Upload multiple <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-images"></i> Galerie photos <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-file-earmark-text"></i> Documents administratifs <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-palette"></i> Portfolio <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-cloud-arrow-up"></i> Backup personnel <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-share"></i> Partage fichiers <small class="text-warning">(Bientôt disponible)</small></div>
-                                        <div class="nav-link ps-5 py-1 small text-muted"><i class="bi bi-archive"></i> Archive projet <small class="text-warning">(Bientôt disponible)</small></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </nav>
-                    </div>
-                </div>
-            </aside>
-            <div class="col-lg-9 col-md-8 col-sm-12">
-                {% block body %}{% endblock %}
             </div>
         </div>
-
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div id="footer-copyright" class="col-md-6">
-                        <p>&copy; {{ 'now'|date('Y') }} - The Symfony Project</p>
-                        <p>{{ 'mit_license'|trans }}</p>
-                    </div>
-                    <div id="footer-resources" class="col-md-6">
-                        <p>
-                            <a rel="noopener noreferrer" target="_blank" href="https://twitter.com/symfony" title="Symfony on X (formerly Twitter)">
-                                <twig:ux:icon name="tabler:brand-x" font-size="28px" /> <span class="sr-only">X/Twitter</span>
-                            </a>
-                            <a target="_blank" href="https://symfony.com/blog/" title="Symfony Blog">
-                                <twig:ux:icon name="tabler:rss" font-size="28px" /> <span class="sr-only">RSS feed</span>
-                            </a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </footer>
     </body>
 </html>

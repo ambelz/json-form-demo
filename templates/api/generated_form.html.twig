@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ formTitle }}{% endblock %}
+
+{% block body_id %}api_generated_form{% endblock %}
+
+{% block main %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h1 class="h3 mb-0">{{ formTitle }}</h1>
+                        {% if formData.description %}
+                            <p class="mb-0 mt-2 opacity-75">{{ formData.description }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        {{ component('JsonFormComponent', {
+                            jsonStructure: formData
+                        }) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

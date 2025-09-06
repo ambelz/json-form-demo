@@ -41,6 +41,7 @@
         "symfony/string": "^7",
         "symfony/translation": "^7",
         "symfony/twig-bundle": "^7",
+        "symfony/uid": "7.3.*",
         "symfony/ux-icons": "^2.29",
         "symfony/ux-live-component": "^2.6",
         "symfony/validator": "^7",
@@ -72,7 +73,7 @@
             "symfony/runtime": true
         },
         "platform": {
-            "php": "8.2.0"
+            "php": "8.2"
         },
         "preferred-install": {
             "*": "dist"

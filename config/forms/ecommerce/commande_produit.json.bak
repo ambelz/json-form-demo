@@ -1,0 +1,430 @@
+{
+    "uniqueKey": "commande-produit-1.0",
+    "title": "Commande de produit",
+    "description": "Formulaire de commande avec informations client et livraison",
+    "slug": "commande-produit",
+    "defaultStorage": "local",
+    "displayOptions": {
+        "mode": "steps",
+        "showNavigationMenu": true,
+        "navigationPosition": "left",
+        "showSectionTitles": true,
+        "showProgressBar": true,
+        "allowJumpToSection": true,
+        "collapsible": true,
+        "scrollspy": true,
+        "showSummary": true,
+        "sections": {
+            "attr": {
+                "class": "p-2"
+            },
+            "label_attr": {
+                "class": "h4"
+            }
+        },
+        "categories": {
+            "attr": {
+                "class": "px-4 py-2"
+            },
+            "label_attr": {
+                "class": "h5"
+            }
+        }
+    },
+    "sections": [
+        {
+            "slug": "paiement",
+            "title": "Paiement",
+            "label_attr": {
+                "class": "h5"
+            },
+            "categories": [
+                {
+                    "slug": "produit",
+                    "title": "Produit",
+                    "label_attr": {
+                        "class": "h6"
+                    },
+                    "questions": [
+                        {
+                            "name": "produit",
+                            "type": "select",
+                            "label": "Produit",
+                            "required": true,
+                            "options": [
+                                {"value": "package_starter", "label": "Package Starter - 29€/mois"},
+                                {"value": "package_pro", "label": "Package Pro - 79€/mois"},
+                                {"value": "package_enterprise", "label": "Package Enterprise - 199€/mois"},
+                                {"value": "formation", "label": "Formation Ambelz - 299€"},
+                                {"value": "consulting", "label": "Consulting personnalisé - Sur devis"}
+                            ],
+                            "ambelz_track": true,
+                            "placeholder": "Sélectionnez un produit"
+                        },
+                        {
+                            "name": "quantite",
+                            "type": "number",
+                            "label": "Quantité",
+                            "required": true,
+                            "validation": {
+                                "min": 1,
+                                "max": 100
+                            },
+                            "ambelz_track": true,
+                            "default": 1
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "informations-client",
+            "title": "Informations client",
+            "description": "Informations personnelles et de livraison",
+            "submit": {
+                "label": "Continuer",
+                "class": "btn btn-primary w-100 mt-4 rounded-pill"
+            },
+            "label_attr": {
+                "class": "h5"
+            },
+            "categories": [
+                {
+                    "slug": "duree-engagement",
+                    "title": "Durée d'engagement",
+                    "label_attr": {
+                        "class": "h6"
+                    },
+                    "questions": [
+                        {
+                            "name": "duree_engagement",
+                            "type": "radio",
+                            "label": "Durée d'engagement",
+                            "required": true,
+                            "options": [
+                                {"value": "mensuel", "label": "Mensuel (sans engagement)"},
+                                {"value": "annuel", "label": "Annuel (-15%)"},
+                                {"value": "biannuel", "label": "2 ans (-25%)"}
+                            ],
+                            "ambelz_track": true,
+                            "default": "mensuel"
+                        }
+                    ]
+                },
+                {
+                    "slug": "coordonnees",
+                    "title": "Coordonnées",
+                    "label_attr": {
+                        "class": "h6"
+                    },
+                    "questions": [
+                        {
+                            "key": "prenom",
+                            "type": "text",
+                            "label": "Prénom",
+                            "required": true,
+                            "attr": {
+                                "placeholder": "Votre prénom",
+                                "autocomplete": "given-name"
+                            },
+                            "constraints": {
+                                "Length": {
+                                    "min": 2,
+                                    "max": 50,
+                                    "minMessage": "Le prénom doit contenir au moins {{ limit }} caractères",
+                                    "maxMessage": "Le prénom ne peut pas dépasser {{ limit }} caractères"
+                                }
+                            }
+                        },
+                        {
+                            "key": "nom",
+                            "type": "text",
+                            "label": "Nom de famille",
+                            "required": true,
+                            "attr": {
+                                "placeholder": "Votre nom de famille",
+                                "autocomplete": "family-name"
+                            },
+                            "constraints": {
+                                "Length": {
+                                    "min": 2,
+                                    "max": 50,
+                                    "minMessage": "Le nom doit contenir au moins {{ limit }} caractères",
+                                    "maxMessage": "Le nom ne peut pas dépasser {{ limit }} caractères"
+                                }
+                            }
+                        },
+                        {
+                            "key": "email",
+                            "type": "email",
+                            "label": "Adresse email",
+                            "required": true,
+                            "attr": {
+                                "placeholder": "votre@email.com",
+                                "autocomplete": "email"
+                            },
+                            "constraints": {
+                                "Email": {
+                                    "message": "Veuillez saisir une adresse email valide"
+                                },
+                                "Length": {
+                                    "min": 5,
+                                    "max": 180,
+                                    "minMessage": "L'email doit contenir au moins {{ limit }} caractères",
+                                    "maxMessage": "L'email ne peut pas dépasser {{ limit }} caractères"
+                                }
+                            }
+                        },
+                        {
+                            "key": "telephone",
+                            "type": "tel",
+                            "label": "Numéro de téléphone",
+                            "required": true,
+                            "attr": {
+                                "placeholder": "06 12 34 56 78",
+                                "autocomplete": "tel"
+                            },
+                            "constraints": {
+                                "Regex": {
+                                    "pattern": "/^(?:(?:\\+|00)33|0)\\s*[1-9](?:[\\s.-]*\\d{2}){4}$/",
+                                    "message": "Format de téléphone français requis"
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "entreprise",
+            "title": "Entreprise",
+            "label_attr": {
+                "class": "h5"
+            },
+            "categories": [
+                {
+                    "slug": "entreprise",
+                    "title": "Entreprise",
+                    "label_attr": {
+                        "class": "h6"
+                    },
+                    "questions": [
+                        {
+                            "name": "entreprise",
+                            "type": "text",
+                            "label": "Entreprise",
+                            "required": true,
+                            "validation": {
+                                "min_length": 2,
+                                "max_length": 100
+                            },
+                            "ambelz_track": true,
+                            "placeholder": "Nom de votre entreprise"
+                        },
+                        {
+                            "name": "siret",
+                            "type": "text",
+                            "label": "SIRET",
+                            "required": false,
+                            "validation": {
+                                "pattern": "^\\d{14}$"
+                            },
+                            "ambelz_track": false,
+                            "placeholder": "12345678901234"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "livraison",
+            "title": "Livraison",
+            "label_attr": {
+                "class": "h5"
+            },
+            "categories": [
+                {
+                    "slug": "adresse",
+                    "title": "Adresse de facturation",
+                    "label_attr": {
+                        "class": "h6"
+                    },
+                    "questions": [
+                        {
+                            "name": "adresse",
+                            "type": "textarea",
+                            "label": "Adresse de facturation",
+                            "required": true,
+                            "validation": {
+                                "min_length": 10,
+                                "max_length": 200
+                            },
+                            "ambelz_track": false,
+                            "placeholder": "Adresse complète",
+                            "rows": 3
+                        },
+                        {
+                            "name": "code_postal",
+                            "type": "text",
+                            "label": "Code postal",
+                            "required": true,
+                            "validation": {
+                                "pattern": "^\\d{5}$"
+                            },
+                            "ambelz_track": false,
+                            "placeholder": "75001"
+                        },
+                        {
+                            "name": "ville",
+                            "type": "text",
+                            "label": "Ville",
+                            "required": true,
+                            "validation": {
+                                "min_length": 2,
+                                "max_length": 50
+                            },
+                            "ambelz_track": false,
+                            "placeholder": "Paris"
+                        },
+                        {
+                            "name": "pays",
+                            "type": "select",
+                            "label": "Pays",
+                            "required": true,
+                            "options": [
+                                {"value": "FR", "label": "France"},
+                                {"value": "BE", "label": "Belgique"},
+                                {"value": "CH", "label": "Suisse"},
+                                {"value": "CA", "label": "Canada"},
+                                {"value": "LU", "label": "Luxembourg"}
+                            ],
+                            "ambelz_track": true,
+                            "default": "FR"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "paiement",
+            "title": "Paiement",
+            "label_attr": {
+                "class": "h5"
+            },
+            "categories": [
+                {
+                    "slug": "mode-paiement",
+                    "title": "Mode de paiement",
+                    "label_attr": {
+                        "class": "h6"
+                    },
+                    "questions": [
+                        {
+                            "name": "mode_paiement",
+                            "type": "radio",
+                            "label": "Mode de paiement",
+                            "required": true,
+                            "options": [
+                                {"value": "carte", "label": "Carte bancaire"},
+                                {"value": "virement", "label": "Virement bancaire"},
+                                {"value": "paypal", "label": "PayPal"}
+                            ],
+                            "ambelz_track": true,
+                            "default": "carte"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "autres",
+            "title": "Autres",
+            "label_attr": {
+                "class": "h5"
+            },
+            "categories": [
+                {
+                    "slug": "code-promo",
+                    "title": "Code promotionnel",
+                    "label_attr": {
+                        "class": "h6"
+                    },
+                    "questions": [
+                        {
+                            "name": "code_promo",
+                            "type": "text",
+                            "label": "Code promotionnel",
+                            "required": false,
+                            "validation": {
+                                "max_length": 20
+                            },
+                            "ambelz_track": true,
+                            "placeholder": "Code promo (optionnel)"
+                        }
+                    ]
+                },
+                {
+                    "slug": "commentaires",
+                    "title": "Commentaires",
+                    "label_attr": {
+                        "class": "h6"
+                    },
+                    "questions": [
+                        {
+                            "name": "commentaires",
+                            "type": "textarea",
+                            "label": "Commentaires",
+                            "required": false,
+                            "validation": {
+                                "max_length": 500
+                            },
+                            "ambelz_track": false,
+                            "placeholder": "Commentaires ou demandes spéciales",
+                            "rows": 3
+                        }
+                    ]
+                },
+                {
+                    "slug": "newsletter",
+                    "title": "Newsletter",
+                    "label_attr": {
+                        "class": "h6"
+                    },
+                    "questions": [
+                        {
+                            "name": "newsletter",
+                            "type": "checkbox",
+                            "label": "Recevoir les actualités produit",
+                            "required": false,
+                            "ambelz_track": true,
+                            "default": true
+                        }
+                    ]
+                },
+                {
+                    "slug": "conditions",
+                    "title": "Conditions",
+                    "label_attr": {
+                        "class": "h6"
+                    },
+                    "questions": [
+                        {
+                            "name": "conditions",
+                            "type": "checkbox",
+                            "label": "J'accepte les conditions générales de vente",
+                            "required": true,
+                            "ambelz_track": true,
+                            "validation": {
+                                "required": true
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "submit": {
+        "label": "Finaliser la commande",
+        "class": "btn btn-success btn-lg w-100"
+    }
+}

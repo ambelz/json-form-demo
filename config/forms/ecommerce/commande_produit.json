@@ -1,0 +1,468 @@
+{
+    "uniqueKey": "commande-produit-1.0",
+    "title": "Commande de produit",
+    "description": "Formulaire de commande avec informations client et livraison",
+    "slug": "commande-produit",
+    "defaultStorage": "local",
+    "displayOptions": {
+        "mode": "steps",
+        "showNavigationMenu": true,
+        "navigationPosition": "left",
+        "showSectionTitles": true,
+        "showProgressBar": true,
+        "allowJumpToSection": true,
+        "collapsible": true,
+        "scrollspy": true,
+        "showSummary": true,
+        "sections": {
+            "attr": {
+                "class": "p-2"
+            },
+            "label_attr": {
+                "class": "h4"
+            }
+        },
+        "categories": {
+            "attr": {
+                "class": "px-4 py-2"
+            },
+            "label_attr": {
+                "class": "h5"
+            }
+        }
+    },
+    "sections": [
+        {
+            "slug": "paiement",
+            "title": "Paiement",
+            "label_attr": {
+                "class": "h5"
+            },
+            "categories": [
+                {
+                    "slug": "produit",
+                    "title": "Produit",
+                    "label_attr": {
+                        "class": "h6"
+                    },
+                    "questions": [
+                        {
+                            "key": "produit",
+                            "type": "choice",
+                            "label": "Produit",
+                            "required": true,
+                            "expanded": false,
+                            "multiple": false,
+                            "choices": {
+                                "Package Starter - 29€/mois": "package_starter",
+                                "Package Pro - 79€/mois": "package_pro",
+                                "Package Enterprise - 199€/mois": "package_enterprise",
+                                "Formation Ambelz - 299€": "formation",
+                                "Consulting personnalisé - Sur devis": "consulting"
+                            },
+                            "attr": {
+                                "placeholder": "Sélectionnez un produit"
+                            }
+                        },
+                        {
+                            "key": "quantite",
+                            "type": "integer",
+                            "label": "Quantité",
+                            "required": true,
+                            "constraints": {
+                                "Range": {
+                                    "min": 1,
+                                    "max": 100,
+                                    "notInRangeMessage": "La quantité doit être comprise entre {{ min }} et {{ max }}"
+                                }
+                            },
+                            "data": 1
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "informations-client",
+            "title": "Informations client",
+            "description": "Informations personnelles et de livraison",
+            "submit": {
+                "label": "Continuer",
+                "class": "btn btn-primary w-100 mt-4 rounded-pill"
+            },
+            "label_attr": {
+                "class": "h5"
+            },
+            "categories": [
+                {
+                    "slug": "duree-engagement",
+                    "title": "Durée d'engagement",
+                    "label_attr": {
+                        "class": "h6"
+                    },
+                    "questions": [
+                        {
+                            "key": "duree_engagement",
+                            "type": "choice",
+                            "label": "Durée d'engagement",
+                            "required": true,
+                            "expanded": true,
+                            "multiple": false,
+                            "choices": {
+                                "Mensuel (sans engagement)": "mensuel",
+                                "Annuel (-15%)": "annuel",
+                                "2 ans (-25%)": "biannuel"
+                            },
+                            "data": "mensuel"
+                        }
+                    ]
+                },
+                {
+                    "slug": "coordonnees",
+                    "title": "Coordonnées",
+                    "label_attr": {
+                        "class": "h6"
+                    },
+                    "questions": [
+                        {
+                            "key": "prenom",
+                            "type": "text",
+                            "label": "Prénom",
+                            "required": true,
+                            "attr": {
+                                "placeholder": "Votre prénom",
+                                "autocomplete": "given-name"
+                            },
+                            "constraints": {
+                                "Length": {
+                                    "min": 2,
+                                    "max": 50,
+                                    "minMessage": "Le prénom doit contenir au moins {{ limit }} caractères",
+                                    "maxMessage": "Le prénom ne peut pas dépasser {{ limit }} caractères"
+                                }
+                            }
+                        },
+                        {
+                            "key": "nom",
+                            "type": "text",
+                            "label": "Nom de famille",
+                            "required": true,
+                            "attr": {
+                                "placeholder": "Votre nom de famille",
+                                "autocomplete": "family-name"
+                            },
+                            "constraints": {
+                                "Length": {
+                                    "min": 2,
+                                    "max": 50,
+                                    "minMessage": "Le nom doit contenir au moins {{ limit }} caractères",
+                                    "maxMessage": "Le nom ne peut pas dépasser {{ limit }} caractères"
+                                }
+                            }
+                        },
+                        {
+                            "key": "email",
+                            "type": "email",
+                            "label": "Adresse email",
+                            "required": true,
+                            "attr": {
+                                "placeholder": "votre@email.com",
+                                "autocomplete": "email"
+                            },
+                            "constraints": {
+                                "Email": {
+                                    "message": "Veuillez saisir une adresse email valide"
+                                },
+                                "Length": {
+                                    "min": 5,
+                                    "max": 180,
+                                    "minMessage": "L'email doit contenir au moins {{ limit }} caractères",
+                                    "maxMessage": "L'email ne peut pas dépasser {{ limit }} caractères"
+                                }
+                            }
+                        },
+                        {
+                            "key": "telephone",
+                            "type": "tel",
+                            "label": "Numéro de téléphone",
+                            "required": true,
+                            "attr": {
+                                "placeholder": "06 12 34 56 78",
+                                "autocomplete": "tel"
+                            },
+                            "constraints": {
+                                "Regex": {
+                                    "pattern": "/^(?:(?:\\+|00)33|0)\\s*[1-9](?:[\\s.-]*\\d{2}){4}$/",
+                                    "message": "Format de téléphone français requis"
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "entreprise",
+            "title": "Entreprise",
+            "label_attr": {
+                "class": "h5"
+            },
+            "categories": [
+                {
+                    "slug": "entreprise",
+                    "title": "Entreprise",
+                    "label_attr": {
+                        "class": "h6"
+                    },
+                    "questions": [
+                        {
+                            "key": "entreprise",
+                            "type": "text",
+                            "label": "Entreprise",
+                            "required": true,
+                            "constraints": {
+                                "Length": {
+                                    "min": 2,
+                                    "max": 100,
+                                    "minMessage": "Le nom doit contenir au moins {{ limit }} caractères",
+                                    "maxMessage": "Le nom ne peut pas dépasser {{ limit }} caractères"
+                                }
+                            },
+                            "attr": {
+                                "placeholder": "Nom de votre entreprise"
+                            }
+                        },
+                        {
+                            "key": "siret",
+                            "type": "text",
+                            "label": "SIRET",
+                            "required": false,
+                            "constraints": {
+                                "Regex": {
+                                    "pattern": "^\\d{14}$"
+                                }
+                            },
+                            "attr": {
+                                "placeholder": "12345678901234"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "livraison",
+            "title": "Livraison",
+            "label_attr": {
+                "class": "h5"
+            },
+            "categories": [
+                {
+                    "slug": "adresse",
+                    "title": "Adresse de facturation",
+                    "label_attr": {
+                        "class": "h6"
+                    },
+                    "questions": [
+                        {
+                            "key": "adresse",
+                            "type": "textarea",
+                            "label": "Adresse de facturation",
+                            "required": true,
+                            "constraints": {
+                                "Length": {
+                                    "min": 10,
+                                    "max": 200,
+                                    "minMessage": "L'adresse doit contenir au moins {{ limit }} caractères",
+                                    "maxMessage": "L'adresse ne peut pas dépasser {{ limit }} caractères"
+                                }
+                            },
+                            "attr": {
+                                "placeholder": "Adresse complète",
+                                "rows": 3
+                            }
+                        },
+                        {
+                            "key": "code_postal",
+                            "type": "text",
+                            "label": "Code postal",
+                            "required": true,
+                            "constraints": {
+                                "Regex": {
+                                    "pattern": "^\\d{5}$"
+                                }
+                            },
+                            "attr": {
+                                "placeholder": "75001"
+                            }
+                        },
+                        {
+                            "key": "ville",
+                            "type": "text",
+                            "label": "Ville",
+                            "required": true,
+                            "constraints": {
+                                "Length": {
+                                    "min": 2,
+                                    "max": 50,
+                                    "minMessage": "Le nom doit contenir au moins {{ limit }} caractères",
+                                    "maxMessage": "Le nom ne peut pas dépasser {{ limit }} caractères"
+                                }
+                            },
+                            "attr": {
+                                "placeholder": "Paris"
+                            }
+                        },
+                        {
+                            "key": "pays",
+                            "type": "choice",
+                            "label": "Pays",
+                            "required": true,
+                            "expanded": false,
+                            "multiple": false,
+                            "choices": {
+                                "France": "FR",
+                                "Belgique": "BE",
+                                "Suisse": "CH",
+                                "Canada": "CA",
+                                "Luxembourg": "LU"
+                            },
+                            "data": "FR"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "paiement",
+            "title": "Paiement",
+            "label_attr": {
+                "class": "h5"
+            },
+            "categories": [
+                {
+                    "slug": "mode-paiement",
+                    "title": "Mode de paiement",
+                    "label_attr": {
+                        "class": "h6"
+                    },
+                    "questions": [
+                        {
+                            "key": "mode_paiement",
+                            "type": "choice",
+                            "label": "Mode de paiement",
+                            "required": true,
+                            "expanded": true,
+                            "multiple": false,
+                            "choices": {
+                                "Carte bancaire": "carte",
+                                "Virement bancaire": "virement",
+                                "PayPal": "paypal"
+                            },
+                            "data": "carte"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "autres",
+            "title": "Autres",
+            "label_attr": {
+                "class": "h5"
+            },
+            "categories": [
+                {
+                    "slug": "code-promo",
+                    "title": "Code promotionnel",
+                    "label_attr": {
+                        "class": "h6"
+                    },
+                    "questions": [
+                        {
+                            "key": "code_promo",
+                            "type": "text",
+                            "label": "Code promotionnel",
+                            "required": false,
+                            "constraints": {
+                                "Length": {
+                                    "max": 20,
+                                    "maxMessage": "Le code promotionnel ne peut pas dépasser {{ limit }} caractères"
+                                }
+                            },
+                            "attr": {
+                                "placeholder": "Code promo (optionnel)"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "slug": "commentaires",
+                    "title": "Commentaires",
+                    "label_attr": {
+                        "class": "h6"
+                    },
+                    "questions": [
+                        {
+                            "key": "commentaires",
+                            "type": "textarea",
+                            "label": "Commentaires",
+                            "required": false,
+                            "constraints": {
+                                "Length": {
+                                    "max": 500,
+                                    "maxMessage": "Le commentaire ne peut pas dépasser {{ limit }} caractères"
+                                }
+                            },
+                            "attr": {
+                                "placeholder": "Commentaires ou demandes spéciales",
+                                "rows": 3
+                            }
+                        }
+                    ]
+                },
+                {
+                    "slug": "newsletter",
+                    "title": "Newsletter",
+                    "label_attr": {
+                        "class": "h6"
+                    },
+                    "questions": [
+                        {
+                            "key": "newsletter",
+                            "type": "checkbox",
+                            "label": "Recevoir les actualités produit",
+                            "required": false,
+                            "attr": {
+                                "placeholder": "Commentaires ou demandes spéciales"
+                            },
+                            "data": true
+                        }
+                    ]
+                },
+                {
+                    "slug": "conditions",
+                    "title": "Conditions",
+                    "label_attr": {
+                        "class": "h6"
+                    },
+                    "questions": [
+                        {
+                            "key": "conditions",
+                            "type": "checkbox",
+                            "label": "J'accepte les conditions générales de vente",
+                            "required": true,
+                            "attr": {
+                                "placeholder": "Commentaires ou demandes spéciales"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "submit": {
+        "label": "Finaliser la commande",
+        "class": "btn btn-success btn-lg w-100"
+    }
+}

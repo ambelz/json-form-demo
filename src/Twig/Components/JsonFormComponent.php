@@ -24,7 +24,7 @@ class JsonFormComponent extends AbstractController
     use LiveCollectionTrait;
 
     #[LiveProp]
-    public string $jsonFilePath;
+    public array $jsonStructure;
 
     #[LiveProp]
     public string $category;
@@ -45,8 +45,7 @@ class JsonFormComponent extends AbstractController
     {
         $data = [];
 
-        $jsonFile = $this->jsonFilePath;
-        $structure = json_decode(file_get_contents($jsonFile), true);
+        $structure = $this->jsonStructure;
 
         $builder = $this->createFormBuilder($data, [
             'label_attr' => [
@@ -72,15 +71,11 @@ class JsonFormComponent extends AbstractController
     public function save()
     {
         $this->submitForm();
-        $this->submitLoading = true;
-        sleep(2);
-        $this->submitLoading = false;
+        $form = $this->getForm();
 
-        $this->addFlash('success', 'Félicitations ! Votre formulaire a été soumis avec succès.');
-
-        return $this->redirectToRoute('demo_form', [
-            'category' => $this->category,
-            'formTitle' => $this->formTitle,
-        ]);
-    }
+        if (!$form->isValid()) {
+            $this->addFlash('error', 'Le formulaireee contient des erreurs. Veuillez les corriger.');
+        }
+        $this->addFlash('success', 'Félicitationssss ! Votre formulaire a été soumis avec succès.');
+    } 
 }

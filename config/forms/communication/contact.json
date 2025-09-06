@@ -1,0 +1,260 @@
+{
+    "slug": "contact",
+    "title": "Nous contacter",
+    "description": "Formulaire de contact pour toute demande d'information ou de support",
+    "displayOptions": {
+        "sections": {
+            "attr": {
+                "class": "p-2"
+            },
+            "label_attr": {
+                "class": "h4"
+            }
+        },
+        "categories": {
+            "attr": {
+                "class": "px-4 py-2"
+            },
+            "label_attr": {
+                "class": "h5"
+            }
+        }
+    },
+    "sections": [
+        {
+            "slug": "informations-contact",
+            "title": "Vos informations",
+            "label_attr": {
+                "class": "h5"
+            },
+            "categories": [
+                {
+                    "slug": "identite",
+                    "title": "Identité",
+                    "label_attr": {
+                        "class": "h6"
+                    },
+                    "questions": [
+                        {
+                            "key": "civilite",
+                            "type": "choice",
+                            "label": "Civilité",
+                            "required": true,
+                            "choices": {
+                                "mr": "Monsieur",
+                                "mme": "Madame",
+                                "autre": "Autre"
+                            },
+                            "attr": {
+                                "placeholder": "Sélectionnez votre civilité"
+                            }
+                        },
+                        {
+                            "key": "prenom",
+                            "type": "text",
+                            "label": "Prénom",
+                            "required": true,
+                            "attr": {
+                                "placeholder": "Votre prénom",
+                                "autocomplete": "given-name"
+                            },
+                            "constraints": {
+                                "Length": {
+                                    "min": 2,
+                                    "max": 50,
+                                    "minMessage": "Le prénom doit contenir au moins {{ limit }} caractères",
+                                    "maxMessage": "Le prénom ne peut pas dépasser {{ limit }} caractères"
+                                }
+                            }
+                        },
+                        {
+                            "key": "nom",
+                            "type": "text",
+                            "label": "Nom de famille",
+                            "required": true,
+                            "attr": {
+                                "placeholder": "Votre nom de famille",
+                                "autocomplete": "family-name"
+                            },
+                            "constraints": {
+                                "Length": {
+                                    "min": 2,
+                                    "max": 50,
+                                    "minMessage": "Le nom doit contenir au moins {{ limit }} caractères",
+                                    "maxMessage": "Le nom ne peut pas dépasser {{ limit }} caractères"
+                                }
+                            }
+                        },
+                        {
+                            "key": "email",
+                            "type": "email",
+                            "label": "Adresse email",
+                            "required": true,
+                            "attr": {
+                                "placeholder": "votre@email.com",
+                                "autocomplete": "email"
+                            },
+                            "constraints": {
+                                "Email": {
+                                    "message": "Veuillez saisir une adresse email valide"
+                                },
+                                "Length": {
+                                    "min": 5,
+                                    "max": 180,
+                                    "minMessage": "L'email doit contenir au moins {{ limit }} caractères",
+                                    "maxMessage": "L'email ne peut pas dépasser {{ limit }} caractères"
+                                }
+                            }
+                        },
+                        {
+                            "key": "telephone",
+                            "type": "tel",
+                            "label": "Numéro de téléphone",
+                            "required": false,
+                            "attr": {
+                                "placeholder": "06 12 34 56 78",
+                                "autocomplete": "tel"
+                            },
+                            "constraints": {
+                                "Regex": {
+                                    "pattern": "/^(?:(?:\\+|00)33|0)\\s*[1-9](?:[\\s.-]*\\d{2}){4}$/",
+                                    "message": "Format de téléphone français requis"
+                                }
+                            }
+                        },
+                        {
+                            "key": "entreprise",
+                            "type": "text",
+                            "label": "Entreprise / Organisation",
+                            "required": false,
+                            "attr": {
+                                "placeholder": "Nom de votre entreprise (optionnel)"
+                            },
+                            "constraints": {
+                                "Length": {
+                                    "max": 100,
+                                    "maxMessage": "Le nom de l'entreprise ne peut pas dépasser {{ limit }} caractères"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "slug": "coordonnees",
+                    "title": "Coordonnées (volontairement vide pour le moment : gérer la dépendance de catégories avec les champs d'une catégorie précédente)",
+                    "label_attr": {
+                        "class": "h6"
+                    },
+                    "questions": []
+                }
+            ]
+        },
+        {
+            "slug": "demande",
+            "title": "Votre demande",
+            "label_attr": {
+                "class": "h5"
+            },
+            "categories": [
+                {
+                    "slug": "type-demande",
+                    "title": "Type de demande",
+                    "label_attr": {
+                        "class": "h6"
+                    },
+                    "questions": [
+                        {
+                            "key": "type_demande",
+                            "type": "choice",
+                            "label": "Type de demande",
+                            "required": true,
+                            "choices": {
+                                "information": "Demande d'information",
+                                "support": "Support technique",
+                                "commercial": "Question commerciale",
+                                "partenariat": "Proposition de partenariat",
+                                "autre": "Autre"
+                            },
+                            "attr": {
+                                "placeholder": "Sélectionnez le type de demande"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "slug": "message",
+                    "title": "Message",
+                    "label_attr": {
+                        "class": "h6"
+                    },
+                    "questions": [
+                        {
+                            "key": "sujet",
+                            "type": "text",
+                            "label": "Sujet",
+                            "required": true,
+                            "attr": {
+                                "placeholder": "Objet de votre message"
+                            },
+                            "constraints": {
+                                "Length": {
+                                    "min": 5,
+                                    "max": 200,
+                                    "minMessage": "Le sujet doit contenir au moins {{ limit }} caractères",
+                                    "maxMessage": "Le sujet ne peut pas dépasser {{ limit }} caractères"
+                                }
+                            }
+                        },
+                        {
+                            "key": "message",
+                            "type": "textarea",
+                            "label": "Votre message",
+                            "required": true,
+                            "attr": {
+                                "placeholder": "Décrivez votre demande en détail...",
+                                "rows": 5
+                            },
+                            "constraints": {
+                                "Length": {
+                                    "min": 10,
+                                    "max": 2000,
+                                    "minMessage": "Le message doit contenir au moins {{ limit }} caractères",
+                                    "maxMessage": "Le message ne peut pas dépasser {{ limit }} caractères"
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "preferences",
+            "title": "Préférences de contact",
+            "categories": [
+                {
+                    "slug": "communication",
+                    "title": "Communication",
+                    "questions": [
+                        {
+                            "key": "newsletter",
+                            "type": "checkbox",
+                            "label": "Je souhaite recevoir des informations sur les nouveautés Ambelz",
+                            "required": false
+                        },
+                        {
+                            "key": "rgpd",
+                            "type": "checkbox",
+                            "label": "J'accepte que mes données soient utilisées pour traiter ma demande",
+                            "required": true,
+                            "help": "Conformément au RGPD, vos données ne seront utilisées que pour répondre à votre demande"
+                        }
+                    ]
+                }
+            ],
+            "submit": {
+                "label": "Envoyer le message",
+                "class": "btn btn-primary btn-lg"
+            }
+        }
+    ]
+}

@@ -1,0 +1,244 @@
+{
+    "slug": "inscription",
+    "title": "Inscription utilisateur",
+    "description": "Formulaire de création de compte utilisateur avec validation complète",
+    "displayOptions": {
+        "sections": {
+            "attr": {
+                "class": "p-2"
+            },
+            "label_attr": {
+                "class": "h4"
+            }
+        },
+        "categories": {
+            "attr": {
+                "class": "px-4 py-2"
+            },
+            "label_attr": {
+                "class": "h5"
+            }
+        }
+    },
+    "sections": [
+        {
+            "slug": "informations-personnelles",
+            "title": "Informations personnelles",
+            "label_attr": {
+                "class": "h5"
+            },
+            "categories": [
+                {
+                    "slug": "identite",
+                    "title": "Identité",
+                    "label_attr": {
+                        "class": "h6"
+                    },
+                    "questions": [
+                        {
+                            "key": "prenom",
+                            "type": "text",
+                            "label": "Prénom",
+                            "required": true,
+                            "attr": {
+                                "placeholder": "Votre prénom",
+                                "autocomplete": "given-name"
+                            },
+                            "constraints": {
+                                "Length": {
+                                    "min": 2,
+                                    "max": 50,
+                                    "minMessage": "Le prénom doit contenir au moins {{ limit }} caractères",
+                                    "maxMessage": "Le prénom ne peut pas dépasser {{ limit }} caractères"
+                                }
+                            }
+                        },
+                        {
+                            "key": "nom",
+                            "type": "text",
+                            "label": "Nom de famille",
+                            "required": true,
+                            "attr": {
+                                "placeholder": "Votre nom de famille",
+                                "autocomplete": "family-name"
+                            },
+                            "constraints": {
+                                "Length": {
+                                    "min": 2,
+                                    "max": 50,
+                                    "minMessage": "Le nom doit contenir au moins {{ limit }} caractères",
+                                    "maxMessage": "Le nom ne peut pas dépasser {{ limit }} caractères"
+                                }
+                            }
+                        },
+                        {
+                            "key": "date_naissance",
+                            "type": "date",
+                            "label": "Date de naissance",
+                            "required": true,
+                            "widget": "single_text",
+                            "constraints": {
+                                "LessThan": {
+                                    "value": "today -13 years",
+                                    "message": "Vous devez avoir au moins 13 ans"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "slug": "contact",
+                    "title": "Contact",
+                    "label_attr": {
+                        "class": "h6"
+                    },
+                    "questions": [
+                        {
+                            "key": "email",
+                            "type": "email",
+                            "label": "Adresse email",
+                            "required": true,
+                            "attr": {
+                                "placeholder": "votre@email.com",
+                                "autocomplete": "email"
+                            },
+                            "constraints": {
+                                "Email": {
+                                    "message": "Veuillez saisir une adresse email valide"
+                                },
+                                "Length": {
+                                    "min": 5,
+                                    "max": 180,
+                                    "minMessage": "L'email doit contenir au moins {{ limit }} caractères",
+                                    "maxMessage": "L'email ne peut pas dépasser {{ limit }} caractères"
+                                }
+                            }
+                        },
+                        {
+                            "key": "telephone",
+                            "type": "tel",
+                            "label": "Numéro de téléphone",
+                            "required": false,
+                            "attr": {
+                                "placeholder": "06 12 34 56 78",
+                                "autocomplete": "tel"
+                            },
+                            "constraints": {
+                                "Regex": {
+                                    "pattern": "/^(?:(?:\\+|00)33|0)\\s*[1-9](?:[\\s.-]*\\d{2}){4}$/",
+                                    "message": "Format de téléphone français requis"
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "securite",
+            "title": "Sécurité",
+            "label_attr": {
+                "class": "h5"
+            },
+            "categories": [
+                {
+                    "slug": "mot-de-passe",
+                    "title": "Mot de passe",
+                    "label_attr": {
+                        "class": "h6"
+                    },
+                    "questions": [
+                        {
+                            "key": "mot_de_passe",
+                            "type": "password",
+                            "label": "Mot de passe",
+                            "required": true,
+                            "attr": {
+                                "placeholder": "Minimum 8 caractères",
+                                "autocomplete": "new-password"
+                            },
+                            "help": "Doit contenir au moins une majuscule, une minuscule, un chiffre et un caractère spécial",
+                            "constraints": {
+                                "Length": {
+                                    "min": 8,
+                                    "minMessage": "Le mot de passe doit contenir au moins {{ limit }} caractères"
+                                },
+                                "Regex": {
+                                    "pattern": "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$/",
+                                    "message": "Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre et un caractère spécial"
+                                }
+                            }
+                        },
+                        {
+                            "key": "confirmation_mot_de_passe",
+                            "type": "password",
+                            "label": "Confirmer le mot de passe",
+                            "required": true,
+                            "attr": {
+                                "placeholder": "Répétez votre mot de passe",
+                                "autocomplete": "new-password"
+                            },
+                            "constraints": {
+                                "EqualTo": {
+                                    "propertyPath": "mot_de_passe",
+                                    "message": "Les mots de passe ne correspondent pas"
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "preferences",
+            "title": "Préférences et conditions",
+            "label_attr": {
+                "class": "h5"
+            },
+            "categories": [
+                {
+                    "slug": "options",
+                    "title": "Options",
+                    "label_attr": {
+                        "class": "h6"
+                    },
+                    "questions": [
+                        {
+                            "key": "newsletter",
+                            "type": "checkbox",
+                            "label": "Je souhaite recevoir la newsletter",
+                            "required": false
+                        }
+                    ]
+                },
+                {
+                    "slug": "conditions",
+                    "title": "Conditions d'utilisation",
+                    "label_attr": {
+                        "class": "h6"
+                    },
+                    "questions": [
+                        {
+                            "key": "conditions",
+                            "type": "checkbox",
+                            "label": "J'accepte les conditions générales d'utilisation",
+                            "required": true,
+                            "help": "Vous devez accepter les conditions pour créer votre compte"
+                        },
+                        {
+                            "key": "rgpd",
+                            "type": "checkbox",
+                            "label": "J'accepte le traitement de mes données personnelles conformément à la politique de confidentialité",
+                            "required": true,
+                            "help": "Conformément au RGPD"
+                        }
+                    ]
+                }
+            ],
+            "submit": {
+                "label": "Créer mon compte",
+                "class": "btn btn-primary btn-lg w-100"
+            }
+        }
+    ]
+}

@@ -1,0 +1,203 @@
+{
+    "slug": "upload-documents",
+    "title": "Upload de documents",
+    "description": "Formulaire sécurisé pour l'upload de documents avec validation",
+    "displayOptions": {
+        "sections": {
+            "attr": {
+                "class": "p-2"
+            },
+            "label_attr": {
+                "class": "h4"
+            }
+        },
+        "categories": {
+            "attr": {
+                "class": "px-4 py-2"
+            },
+            "label_attr": {
+                "class": "h5"
+            }
+        }
+    },
+    "sections": [
+        {
+            "slug": "informations-generales",
+            "title": "Informations générales",
+            "label_attr": {
+                "class": "h5"
+            },
+            "categories": [
+                {
+                    "slug": "identite",
+                    "title": "Identité",
+                    "label_attr": {
+                        "class": "h6"
+                    },
+                    "questions": [
+                        {
+                            "key": "nom_document",
+                            "type": "text",
+                            "label": "Nom du document",
+                            "required": true,
+                            "attr": {
+                                "placeholder": "Nom descriptif du document"
+                            },
+                            "constraints": {
+                                "Length": {
+                                    "min": 3,
+                                    "max": 100,
+                                    "minMessage": "Le nom doit contenir au moins {{ limit }} caractères",
+                                    "maxMessage": "Le nom ne peut pas dépasser {{ limit }} caractères"
+                                }
+                            }
+                        },
+                        {
+                            "key": "description",
+                            "type": "textarea",
+                            "label": "Description (optionnelle)",
+                            "required": false,
+                            "attr": {
+                                "placeholder": "Description du contenu du document...",
+                                "rows": 3
+                            },
+                            "constraints": {
+                                "Length": {
+                                    "max": 500,
+                                    "maxMessage": "La description ne peut pas dépasser {{ limit }} caractères"
+                                }
+                            }
+                        },
+                        {
+                            "key": "categorie",
+                            "type": "choice",
+                            "label": "Catégorie",
+                            "required": true,
+                            "choices": {
+                                "administratif": "Document administratif",
+                                "juridique": "Document juridique",
+                                "financier": "Document financier",
+                                "technique": "Document technique",
+                                "marketing": "Document marketing",
+                                "autre": "Autre"
+                            },
+                            "attr": {
+                                "placeholder": "Sélectionnez une catégorie"
+                            }
+                        },
+                        {
+                            "key": "tags",
+                            "type": "text",
+                            "label": "Tags",
+                            "required": false,
+                            "attr": {
+                                "placeholder": "Mots-clés séparés par des virgules"
+                            },
+                            "help": "Ex: contrat, 2024, client-abc",
+                            "constraints": {
+                                "Length": {
+                                    "max": 200,
+                                    "maxMessage": "Les tags ne peuvent pas dépasser {{ limit }} caractères"
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "documents",
+            "title": "Documents à télécharger",
+            "label_attr": {
+                "class": "h5"
+            },
+            "categories": [
+                {
+                    "slug": "upload",
+                    "title": "Upload",
+                    "questions": [
+                        {
+                            "key": "fichier_principal",
+                            "type": "file",
+                            "label": "Fichier principal",
+                            "required": true,
+                            "help": "Formats acceptés: PDF, Word, Excel, PowerPoint, images. Taille max: 10MB"
+                        },
+                        {
+                            "key": "fichiers_annexes",
+                            "type": "file",
+                            "label": "Fichiers annexes",
+                            "required": false,
+                            "help": "Jusqu'à 5 fichiers annexes, 5MB max chacun"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "parametres",
+            "title": "Paramètres",
+            "categories": [
+                {
+                    "slug": "pieces-identite",
+                    "title": "Pièces d'identité",
+                    "label_attr": {
+                        "class": "h6"
+                    },
+                    "questions": [
+                        {
+                            "key": "confidentialite",
+                            "type": "choice",
+                            "label": "Niveau de confidentialité",
+                            "required": true,
+                            "choices": {
+                                "public": "Public - Accessible à tous",
+                                "interne": "Interne - Équipe uniquement",
+                                "confidentiel": "Confidentiel - Accès restreint"
+                            },
+                            "expanded": true
+                        },
+                        {
+                            "key": "date_expiration",
+                            "type": "date",
+                            "label": "Date d'expiration",
+                            "required": false,
+                            "help": "Date après laquelle le document ne sera plus valide"
+                        },
+                        {
+                            "key": "notification_email",
+                            "type": "email",
+                            "label": "Email de notification",
+                            "required": false,
+                            "attr": {
+                                "placeholder": "email@exemple.com",
+                                "autocomplete": "email"
+                            },
+                            "help": "Recevez une confirmation par email",
+                            "constraints": {
+                                "Email": {
+                                    "message": "Veuillez saisir une adresse email valide"
+                                }
+                            }
+                        },
+                        {
+                            "key": "accepter_conditions",
+                            "type": "boolean",
+                            "label": "J'accepte les conditions d'utilisation",
+                            "required": true
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "submit": {
+        "label": "Uploader les documents",
+        "class": "btn btn-primary btn-lg"
+    },
+    "demo_mode": {
+        "enabled": true,
+        "success_message": "✅ Documents uploadés avec succès ! En mode réel, les fichiers seraient stockés de manière sécurisée et indexés.",
+        "show_submitted_data": true
+    }
+}

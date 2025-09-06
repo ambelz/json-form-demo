@@ -1,0 +1,797 @@
+{
+    "uniqueKey": "kyc-1.0",
+    "title": "Parcours KYC",
+    "description": "Ce parcours permet de collecter les informations nécessaires pour créer votre profil personnel et souscrire à un produit Anaxago.",
+    "slug": "kyc-1.0",
+    "defaultStorage": "local",
+    "displayOptions": {
+        "mode": "steps",
+        "showNavigationMenu": true,
+        "navigationPosition": "left",
+        "showSectionTitles": true,
+        "showProgressBar": true,
+        "allowJumpToSection": true,
+        "collapsible": true,
+        "scrollspy": true,
+        "showSummary": true,
+        "sections": {
+            "attr": {
+                "class": "p-2"
+            },
+            "label_attr": {
+                "class": "h4"
+            }
+        },
+        "categories": {
+            "attr": {
+                "class": "px-4 py-2"
+            },
+            "label_attr": {
+                "class": "h5"
+            }
+        }
+    },
+    "sections": [
+        {
+            "slug": "informations-personnelles",
+            "title": "Informations personnelles",
+            "description": "Informations d'identification personnelle",
+            "submit": {
+                "label": "Continuer",
+                "class": "btn btn-primary w-100 mt-4 rounded-pill"
+            },
+            "label_attr": {
+                "class": "h5"
+            },
+            "categories": [
+                {
+                    "slug": "informations-civiles",
+                    "title": "Informations civiles",
+                    "label_attr": {
+                        "class": "h6"
+                    },
+                    "questions": [
+                        {
+                            "key": "emails",
+                            "type": "collection",
+                            "label": "Adresses e-mail",
+                            "allow_add": true,
+                            "allow_delete": true,
+                            "label_attr": {
+                                "class": "h6"
+                            },
+                            "attr": {
+                                "class": ""
+                            },
+                            "fields": [
+                                {
+                                    "key": "email",
+                                    "type": "email",
+                                    "label": "E-mail",
+                                    "required": true,
+                                    "constraints": {
+                                        "Email": {
+                                            "message": "Adresse e-mail invalide"
+                                        }
+                                    }
+                                },
+                                {
+                                    "key": "phone",
+                                    "type": "tel",
+                                    "label": "Téléphone",
+                                    "required": false,
+                                    "constraints": {
+                                        "Regex": {
+                                            "pattern": "/^\\+?[0-9\\s\\-\\.\\(\\)]{10,}$/",
+                                            "message": "Numéro de téléphone invalide"
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "key": "contacts",
+                            "type": "collection",
+                            "label": "Contacts",
+                            "allow_add": true,
+                            "allow_delete": true,
+                            "label_attr": {
+                                "class": "h6"
+                            },
+                            "attr": {
+                                "class": ""
+                            },
+                            "fields": [
+                                {
+                                    "key": "name",
+                                    "type": "text",
+                                    "label": "Nom",
+                                    "required": true,
+                                    "constraints": {
+                                        "NotBlank": {
+                                            "message": "Veuillez saisir le nom"
+                                        }
+                                    }
+                                },
+                                {
+                                    "key": "firstName",
+                                    "type": "text",
+                                    "label": "Prénom",
+                                    "required": true,
+                                    "constraints": {
+                                        "NotBlank": {
+                                            "message": "Veuillez saisir le prénom"
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "key": "civility",
+                            "type": "choice",
+                            "label": "Civilité",
+                            "required": true,
+                            "expanded": true,
+                            "choices": {
+                                "Monsieur": "mr",
+                                "Madame": "mrs"
+                            }
+                        },
+                        {
+                            "key": "lastName",
+                            "type": "text",
+                            "label": "Nom",
+                            "required": true,
+                            "constraints": {
+                                "NotBlank": {
+                                    "message": "Veuillez saisir votre nom"
+                                },
+                                "Length": {
+                                    "min": 2,
+                                    "max": 50,
+                                    "minMessage": "Votre nom doit comporter au moins {{ limit }} caractères",
+                                    "maxMessage": "Votre nom ne peut pas dépasser {{ limit }} caractères"
+                                },
+                                "Regex": {
+                                    "pattern": "/^[A-Za-zÀ-ÿ\\s\\-']+$/",
+                                    "message": "Votre nom contient des caractères non autorisés"
+                                }
+                            }
+                        },
+                        {
+                            "key": "firstName",
+                            "type": "text",
+                            "label": "Prénom",
+                            "required": true,
+                            "constraints": {
+                                "NotBlank": {
+                                    "message": "Veuillez saisir votre prénom"
+                                },
+                                "Length": {
+                                    "min": 2,
+                                    "max": 50,
+                                    "minMessage": "Votre prénom doit comporter au moins {{ limit }} caractères",
+                                    "maxMessage": "Votre prénom ne peut pas dépasser {{ limit }} caractères"
+                                },
+                                "Regex": {
+                                    "pattern": "/^[A-Za-zÀ-ÿ\\s\\-']+$/",
+                                    "message": "Votre prénom contient des caractères non autorisés"
+                                }
+                            }
+                        },
+                        {
+                            "key": "birthDate",
+                            "type": "date",
+                            "label": "Date de naissance",
+                            "required": true,
+                            "constraints": {
+                                "NotBlank": {
+                                    "message": "Veuillez saisir votre date de naissance"
+                                },
+                                "LessThanOrEqual": {
+                                    "value": "-18 years",
+                                    "message": "Vous devez avoir au moins 18 ans"
+                                }
+                            }
+                        },
+                        {
+                            "key": "birthCity",
+                            "type": "text",
+                            "label": "Ville de naissance",
+                            "required": true,
+                            "constraints": {
+                                "NotBlank": {
+                                    "message": "Veuillez saisir votre ville de naissance"
+                                },
+                                "Length": {
+                                    "min": 2,
+                                    "max": 50,
+                                    "minMessage": "Le nom de la ville doit comporter au moins {{ limit }} caractères",
+                                    "maxMessage": "Le nom de la ville ne peut pas dépasser {{ limit }} caractères"
+                                }
+                            }
+                        },
+                        {
+                            "key": "birthCountry",
+                            "type": "country",
+                            "label": "Pays de naissance",
+                            "help": "Commencez à taper pour rechercher votre pays",
+                            "required": true,
+                            "constraints": {
+                                "NotBlank": {
+                                    "message": "Veuillez sélectionner votre pays de naissance"
+                                }
+                            },
+                            "preferred_choices": [
+                                "FR",
+                                "BE",
+                                "CH",
+                                "LU"
+                            ],
+                            "attr": {
+                                "autocomplete": true,
+                                "placeholder": "Sélectionnez votre pays"
+                            }
+                        },
+                        {
+                            "key": "nationality",
+                            "type": "country",
+                            "label": "Nationalité",
+                            "required": true,
+                            "constraints": {
+                                "NotBlank": {
+                                    "message": "Veuillez sélectionner votre nationalité"
+                                }
+                            },
+                            "preferred_choices": [
+                                "FR",
+                                "BE",
+                                "CH",
+                                "LU"
+                            ],
+                            "attr": {
+                                "autocomplete": true,
+                                "placeholder": "Sélectionnez votre nationalité"
+                            }
+                        },
+                        {
+                            "key": "country",
+                            "type": "country",
+                            "label": "Pays",
+                            "required": true,
+                            "constraints": {
+                                "NotBlank": {
+                                    "message": "Veuillez sélectionner votre pays"
+                                }
+                            },
+                            "preferred_choices": [
+                                "FR",
+                                "BE",
+                                "CH",
+                                "LU"
+                            ],
+                            "attr": {
+                                "autocomplete": true,
+                                "placeholder": "Sélectionnez votre pays"
+                            }
+                        },
+                        {
+                            "key": "profession",
+                            "type": "choice",
+                            "label": "Profession",
+                            "required": true,
+                            "constraints": {
+                                "NotBlank": {
+                                    "message": "Veuillez sélectionner votre profession"
+                                }
+                            },
+                            "choices": {
+                                "Agriculteurs exploitants": "agriculteurs-exploitants",
+                                "Artisans, commerçants et chefs d'entreprise": "artisans-commerçants-et-chefs-entreprise",
+                                "Cadres et professions intellectuelles supérieures": "cadres-et-professions-intellectuelles-supérieures",
+                                "Professions intermédiaires": "professions-intermediaires",
+                                "Employés": "employes",
+                                "Ouvriers": "ouvriers",
+                                "Retraités": "retraites",
+                                "Autres personnes sans activité professionnelle": "autres-personnes-sans-activité-professionnelle"
+                            },
+                            "attr": {
+                                "placeholder": "Sélectionnez votre profession"
+                            }
+                        },
+                        {
+                            "key": "address",
+                            "type": "text",
+                            "label": "Adresse",
+                            "required": true,
+                            "constraints": {
+                                "NotBlank": {
+                                    "message": "Veuillez saisir votre adresse"
+                                },
+                                "Length": {
+                                    "min": 5,
+                                    "max": 100,
+                                    "minMessage": "L'adresse doit comporter au moins {{ limit }} caractères",
+                                    "maxMessage": "L'adresse ne peut pas dépasser {{ limit }} caractères"
+                                }
+                            }
+                        },
+                        {
+                            "key": "email",
+                            "type": "email",
+                            "label": "Email",
+                            "required": true,
+                            "constraints": {
+                                "NotBlank": {
+                                    "message": "Veuillez saisir votre adresse email"
+                                },
+                                "Email": {
+                                    "message": "L'adresse email '{{ value }}' n'est pas valide"
+                                }
+                            }
+                        },
+                        {
+                            "key": "phone",
+                            "type": "tel",
+                            "label": "Téléphone",
+                            "required": true,
+                            "constraints": {
+                                "NotBlank": {
+                                    "message": "Veuillez saisir votre numéro de téléphone"
+                                },
+                                "Regex": {
+                                    "pattern": "/^(\\+33|0)[1-9](\\d{2}){4}$/",
+                                    "message": "Le format du numéro de téléphone n'est pas valide"
+                                }
+                            }
+                        },
+                        {
+                            "key": "termsAccepted",
+                            "type": "checkbox",
+                            "label": "J'accepte les conditions générales d'utilisation",
+                            "required": true,
+                            "constraints": {
+                                "IsTrue": {
+                                    "message": "Vous devez accepter les conditions générales d'utilisation"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "slug": "adresse-fiscale",
+                    "title": "Adresse fiscale",
+                    "questions": [
+                        {
+                            "key": "fiscalAddress",
+                            "type": "text",
+                            "label": "Adresse fiscale",
+                            "required": true,
+                            "help": "Commencez à taper pour rechercher votre adresse",
+                            "attr": {
+                                "autocomplete": true,
+                                "placeholder": "Saisissez votre adresse"
+                            }
+                        },
+                        {
+                            "key": "addressNumber",
+                            "type": "text",
+                            "label": "Numéro de rue",
+                            "required": true,
+                            "displayDependencies": {
+                                "operator": "AND",
+                                "conditions": [
+                                    {
+                                        "field": "fiscalAddress",
+                                        "isNotNull": true
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "key": "street",
+                            "type": "text",
+                            "label": "Rue",
+                            "required": true,
+                            "displayDependencies": {
+                                "fiscalAddress": {
+                                    "isNotNull": true
+                                }
+                            }
+                        },
+                        {
+                            "key": "postalCode",
+                            "type": "text",
+                            "label": "Code postal",
+                            "required": true,
+                            "displayDependencies": {
+                                "fiscalAddress": {
+                                    "isNotNull": true
+                                }
+                            },
+                            "constraints": {
+                                "NotBlank": {
+                                    "message": "Veuillez saisir votre code postal"
+                                },
+                                "Length": {
+                                    "min": 5,
+                                    "max": 5,
+                                    "minMessage": "Le code postal doit comporter au moins {{ limit }} caractères",
+                                    "maxMessage": "Le code postal ne peut pas dépasser {{ limit }} caractères"
+                                }
+                            }
+                        },
+                        {
+                            "key": "city",
+                            "type": "text",
+                            "label": "Ville",
+                            "required": true,
+                            "displayDependencies": {
+                                "fiscalAddress": {
+                                    "isNotNull": true
+                                }
+                            },
+                            "constraints": {
+                                "NotBlank": {
+                                    "message": "Veuillez saisir votre ville"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "slug": "profil",
+                    "title": "Profil",
+                    "questions": [
+                        {
+                            "key": "professionalInvestor",
+                            "type": "choice",
+                            "label": "Investisseur professionnel",
+                            "help": "Êtes-vous un investisseur professionnel ?",
+                            "required": true,
+                            "expanded": true,
+                            "choices": {
+                                "Oui": "yes",
+                                "Non": "no"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "slug": "situation-juridique",
+                    "title": "Situation juridique",
+                    "questions": [
+                        {
+                            "key": "usPerson",
+                            "type": "choice",
+                            "label": "Avez-vous le statut de contribuable \"US Person\" ?",
+                            "required": true,
+                            "help": "Une US Person est une personne de nationalité américaine ou ayant sa résidence fiscale aux États-Unis.",
+                            "expanded": true,
+                            "choices": {
+                                "Oui": "yes",
+                                "Non": "no"
+                            }
+                        },
+                        {
+                            "key": "ppe",
+                            "type": "choice",
+                            "label": "Êtes-vous une personne politiquement exposée ou êtes-vous lié à une PPE ?",
+                            "required": true,
+                            "help": "Une Personne Politiquement Exposée (PPE) est une personne qui exerce ou a exercé une fonction politique, juridictionnelle ou administrative importante.",
+                            "expanded": true,
+                            "choices": {
+                                "Oui": "yes",
+                                "Non": "no"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "documents-justificatifs",
+            "title": "Documents justificatifs",
+            "description": "Documents nécessaires pour valider votre identité",
+            "submit": {
+                "label": "Sauvegarder et continuer",
+                "class": "btn btn-primary mt-4 rounded-pill px-5"
+            },
+            "categories": [
+                {
+                    "slug": "documents",
+                    "title": "Documents justificatifs",
+                    "questions": [
+                        {
+                            "key": "idCard",
+                            "type": "file",
+                            "label": "Carte d'identité (recto/verso)",
+                            "required": false,
+                            "help": "Merci de télécharger une copie de votre carte d'identité (recto/verso) ou de votre passeport.",
+                            "constraints": {
+                                "File": {
+                                    "maxSize": "1M",
+                                    "mimeTypes": [
+                                        "image/jpeg",
+                                        "image/png"
+                                    ],
+                                    "maxSizeMessage": "Le fichier est trop volumineux ({{ size }} {{ suffix }}). La taille maximale autorisée est {{ limit }} {{ suffix }}",
+                                    "mimeTypesMessage": "Veuillez télécharger un fichier au format JPG, PNG ou PDF"
+                                }
+                            },
+                            "attr": {
+                                "accept": ".jpg,.jpeg,.png",
+                                "maxSize": "1M"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "connaissances-et-objectifs",
+            "title": "Connaissances et objectifs",
+            "description": "Évaluation de vos connaissances financières et de vos objectifs d'investissement",
+            "submit": {
+                "label": "Sauvegarder et continuer",
+                "class": "btn btn-primary mt-4 rounded-pill px-5"
+            },
+            "categories": [
+                {
+                    "slug": "connaissances-financieres",
+                    "title": "Connaissances financières",
+                    "questions": [
+                        {
+                            "key": "niveauExperience",
+                            "type": "choice",
+                            "label": "Quel est votre niveau d'expérience en matière d'investissement ?",
+                            "required": true,
+                            "expanded": true,
+                            "choices": {
+                                "Débutant": "debutant",
+                                "Intermédiaire": "intermediaire",
+                                "Avancé": "avance",
+                                "Expert": "expert"
+                            }
+                        },
+                        {
+                            "key": "connaissanceProduits",
+                            "type": "choice",
+                            "label": "Quels produits financiers connaissez-vous ?",
+                            "required": true,
+                            "multiple": true,
+                            "expanded": true,
+                            "choices": {
+                                "Actions": "actions",
+                                "Obligations": "obligations",
+                                "Fonds communs de placement": "fondsCommuns",
+                                "Produits dérivés": "produitsDerives",
+                                "Immobilier": "immobilier",
+                                "Cryptomonnaies": "cryptomonnaies"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "slug": "objectifs-investissement",
+                    "title": "Objectifs d'investissement",
+                    "questions": [
+                        {
+                            "key": "horizonInvestissement",
+                            "type": "choice",
+                            "label": "Quel est votre horizon d'investissement ?",
+                            "required": true,
+                            "expanded": true,
+                            "choices": {
+                                "Court terme (moins de 2 ans)": "courtTerme",
+                                "Moyen terme (2 à 5 ans)": "moyenTerme",
+                                "Long terme (plus de 5 ans)": "longTerme"
+                            }
+                        },
+                        {
+                            "key": "objectifsPrincipaux",
+                            "type": "choice",
+                            "label": "Quels sont vos objectifs principaux ?",
+                            "required": true,
+                            "expanded": true,
+                            "multiple": true,
+                            "choices": {
+                                "Croissance du capital": "croissance",
+                                "Génération de revenus": "revenu",
+                                "Préservation du capital": "preservation",
+                                "Préparation de la retraite": "retraite",
+                                "Diversification du portefeuille": "diversification"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "votre-situation",
+            "title": "Votre situation",
+            "description": "Informations sur votre situation actuelle",
+            "label_attr": {
+                "class": "h4"
+            },
+            "submit": {
+                "label": "Sauvegarder et continuer",
+                "class": "btn btn-primary mt-4 rounded-pill px-5"
+            },
+            "categories": [
+                {
+                    "slug": "situation-actuelle",
+                    "title": "Situation actuelle",
+                    "label_attr": {
+                        "class": "h5 bg-light p-2"
+                    },
+                    "questions": [
+                        {
+                            "key": "situationProfessionnelle",
+                            "type": "choice",
+                            "label": "Quelle est votre situation professionnelle ?",
+                            "required": true,
+                            "expanded": true,
+                            "choices": {
+                                "Salarié": "salarie",
+                                "Indépendant": "independant",
+                                "Entrepreneur": "entrepreneur",
+                                "Retraité": "retraite",
+                                "Étudiant": "etudiant",
+                                "Sans emploi": "sansEmploi"
+                            }
+                        },
+                        {
+                            "key": "revenuAnnuel",
+                            "type": "choice",
+                            "label": "Quel est votre revenu annuel ?",
+                            "required": true,
+                            "expanded": true,
+                            "choices": {
+                                "Moins de 25 000 €": "moins25k",
+                                "25 000 € - 50 000 €": "25k50k",
+                                "50 000 € - 75 000 €": "50k75k",
+                                "75 000 € - 100 000 €": "75k100k",
+                                "Plus de 100 000 €": "plus100k"
+                            },
+                            "displayDependencies": {
+                                "operator": "AND",
+                                "conditions": [
+                                    {
+                                        "field": "situationProfessionnelle",
+                                        "notEquals": "sansEmploi"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "risque",
+            "title": "Profil de risque",
+            "description": "Évaluation de votre tolérance au risque",
+            "submit": {
+                "label": "Sauvegarder et continuer",
+                "class": "btn btn-primary mt-4 rounded-pill px-5"
+            },
+            "categories": [
+                {
+                    "slug": "tolerance-risque",
+                    "title": "Tolérance au risque",
+                    "questions": [
+                        {
+                            "key": "niveauRisque",
+                            "type": "choice",
+                            "label": "Quel niveau de risque êtes-vous prêt à accepter ?",
+                            "required": true,
+                            "expanded": true,
+                            "choices": {
+                                "Faible": "faible",
+                                "Modéré": "modere",
+                                "Élevé": "eleve",
+                                "Très élevé": "tresEleve"
+                            }
+                        },
+                        {
+                            "key": "perteAcceptable",
+                            "type": "choice",
+                            "label": "Quelle perte maximale pourriez-vous accepter sur votre investissement ?",
+                            "required": true,
+                            "expanded": true,
+                            "choices": {
+                                "Moins de 5%": "moins5",
+                                "Entre 5% et 10%": "entre5et10",
+                                "Entre 10% et 20%": "entre10et20",
+                                "Plus de 20%": "plus20"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "signature",
+            "title": "Signature",
+            "description": "Signature électronique du formulaire",
+            "submit": {
+                "label": "Signer",
+                "class": "btn btn-success mt-4 rounded-pill px-5"
+            },
+            "categories": [
+                {
+                    "slug": "signature-electronique",
+                    "title": "Signature électronique",
+                    "questions": [
+                        {
+                            "key": "signatureConsent",
+                            "type": "checkbox",
+                            "label": "Je certifie l'exactitude des informations fournies et j'accepte les conditions générales.",
+                            "required": true
+                        },
+                        {
+                            "key": "digitalSignature",
+                            "type": "text",
+                            "label": "Votre signature",
+                            "required": true,
+                            "help": "Veuillez signer électroniquement ci-dessous pour valider votre formulaire."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "paiement",
+            "title": "Paiement",
+            "description": "Informations relatives au paiement",
+            "submit": {
+                "label": "Payer",
+                "class": "btn btn-warning w-100 mt-4"
+            },
+            "categories": [
+                {
+                    "slug": "informations-paiement",
+                    "title": "Informations de paiement",
+                    "questions": [
+                        {
+                            "key": "methodePaiement",
+                            "type": "choice",
+                            "label": "Méthode de paiement préférée",
+                            "required": true,
+                            "expanded": true,
+                            "choices": {
+                                "carteBancaire": "Carte bancaire",
+                                "virement": "Virement bancaire",
+                                "prelevement": "Prélèvement automatique"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "validation",
+            "title": "Validation",
+            "description": "Vérification finale et confirmation des informations",
+            "submit": {
+                "label": "Confirmer la souscription",
+                "class": "btn btn-success mt-4 rounded-pill px-5"
+            },
+            "categories": [
+                {
+                    "slug": "confirmation",
+                    "title": "Confirmation des informations",
+                    "questions": [
+                        {
+                            "key": "verificationFinale",
+                            "type": "checkbox",
+                            "label": "J'ai vérifié toutes les informations fournies et je confirme qu'elles sont exactes et complètes.",
+                            "required": true
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
