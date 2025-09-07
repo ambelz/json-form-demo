@@ -43,7 +43,7 @@ class JsonFormComponent extends AbstractController
 
     protected function instantiateForm(): FormInterface
     {
-        $data = []; // vos données initiales pour pré-remplir le formulaire
+        $data = []; // your initial data to pre-fill the form
 
         $structure = $this->jsonStructure;
 
@@ -72,7 +72,6 @@ class JsonFormComponent extends AbstractController
     {
         $this->submitForm();
         $form = $this->getForm();
-        dd($form->getData());
 
         if (!$form->isValid()) {
             $this->addFlash('error', 'Le formulaireee contient des erreurs. Veuillez les corriger.');

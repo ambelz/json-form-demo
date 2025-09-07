@@ -1,88 +1,69 @@
-Symfony Demo Application
+Ambelz JSON-to-Form Demo
 ========================
 
-The "Symfony Demo Application" is a reference application created to show how
-to develop applications following the [Symfony Best Practices][1].
+This demo application showcases the **ambelz/json-to-form** bundle capabilities with **Symfony Live Components**. It demonstrates how to create dynamic, interactive forms from JSON configurations without writing custom JavaScript.
 
-You can also learn about these practices in [the official Symfony Book][5].
+## What is json-to-form?
 
-Requirements
-------------
+The `ambelz/json-to-form` bundle is an open-source Symfony package that transforms JSON schema definitions into fully functional Symfony forms. This demo shows real-world use cases and advanced features.
 
-  * PHP 8.2.0 or higher;
-  * PDO-SQLite PHP extension enabled;
-  * and the [usual Symfony application requirements][2].
+## Key Features Demonstrated
 
-Installation
-------------
+### 🚀 Live Components Integration
+- **Real-time form rendering** from JSON configurations
+- **Interactive form updates** without page reloads
+- **Dynamic field validation** and error handling
+- **Seamless user experience** with modern UX patterns
 
-There are 3 different ways of installing this project depending on your needs:
+### 📋 Real-World Form Examples
+The demo includes 5 practical form types commonly used in web applications:
 
-**Option 1.** [Download Symfony CLI][4] and use the `symfony` binary installed
-on your computer to run this command:
+1. **Registration Forms** - User signup with validation
+2. **Login Forms** - Authentication with security features  
+3. **Contact Forms** - Communication with file uploads
+4. **Document Upload** - File handling with progress tracking
+5. **Complex Forms** - Advanced use cases (orders, quotes, surveys)
+
+### 🎨 Advanced Capabilities
+- **Timezone handling** - Automatic timezone field normalization
+- **Collection management** - Dynamic add/remove of form sections
+- **Custom field types** - Extended form field support
+- **Theme customization** - Flexible styling options
+- **API integration** - Form generation via REST API
+
+## Requirements
+
+- **PHP 8.2+** with latest PHP 8 features
+- **Symfony 7.x** with Live Components
+- **PDO-SQLite** for demo data storage
+- Standard Symfony application requirements
+
+## Quick Start
+
+### Installation
 
 ```bash
-symfony new --demo my_project
-```
+# Clone the repository
+git clone https://github.com/ambelz/json-to-form-demo.git
+cd json-to-form-demo
 
-**Option 2.** [Download Composer][6] and use the `composer` binary installed
-on your computer to run these commands:
-
-```bash
-# you can create a new project based on the Symfony Demo project...
-composer create-project symfony/symfony-demo my_project
-
-# ...or you can clone the code repository and install its dependencies
-git clone https://github.com/symfony/demo.git my_project
-cd my_project/
+# Install dependencies
 composer install
+
+# Set up the database
+php bin/console doctrine:migrations:migrate
 ```
 
-**Option 3.** Click the following button to deploy this project on Platform.sh,
-the official Symfony PaaS, so you can try it without installing anything locally:
+### Running the Demo
 
-<p align="center">
-<a href="https://console.platform.sh/projects/create-project?template=https://raw.githubusercontent.com/symfonycorp/platformsh-symfony-template-metadata/main/symfony-demo.template.yaml&utm_content=symfonycorp&utm_source=github&utm_medium=button&utm_campaign=deploy_on_platform"><img src="https://platform.sh/images/deploy/lg-blue.svg" alt="Deploy on Platform.sh" width="180px" /></a>
-</p>
-
-Usage
------
-
-There's no need to configure anything before running the application. There are
-2 different ways of running this application depending on your needs:
-
-**Option 1.** [Download Symfony CLI][4] and run this command:
-
+**Option 1: Symfony CLI (Recommended)**
 ```bash
-cd my_project/
 symfony serve
 ```
 
-Then access the application in your browser at the given URL (<https://localhost:8000> by default).
-
-**Option 2.** Use a web server like Nginx or Apache to run the application
-(read the documentation about [configuring a web server for Symfony][3]).
-
-On your local machine, you can run this command to use the built-in PHP web server:
-
+**Option 2: Built-in PHP Server**
 ```bash
-cd my_project/
 php -S localhost:8000 -t public/
 ```
 
-Tests
------
-
-Execute this command to run tests:
-
-```bash
-cd my_project/
-./bin/phpunit
-```
-
-[1]: https://symfony.com/doc/current/best_practices.html
-[2]: https://symfony.com/doc/current/setup.html#technical-requirements
-[3]: https://symfony.com/doc/current/setup/web_server_configuration.html
-[4]: https://symfony.com/download
-[5]: https://symfony.com/book
-[6]: https://getcomposer.org/
+Visit `http://localhost:8000` to explore the interactive demo and enjoy !

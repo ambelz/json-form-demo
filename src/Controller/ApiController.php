@@ -46,10 +46,10 @@ class ApiController extends AbstractController
             return $response;
         }
 
-        // Validation de la présence du champ "schema"
+        // Validate the presence of the "schema" field
         if (!isset($requestData['schema'])) {
             $response = new JsonResponse([
-                'error' => 'Champ "schema" manquant',
+                'error' => 'Missing "schema" field',
                 'details' => 'Le champ "schema" contenant la structure du formulaire est requis'
             ], 400);
             $this->addCorsHeaders($response);
@@ -76,7 +76,7 @@ class ApiController extends AbstractController
             $entityManager->persist($formSchema);
             $entityManager->flush();
 
-            // Génération des URLs uniques
+            // Generate unique URLs
             $formUrl = $this->generateUrl('api_show_form', ['uuid' => $formSchema->getId()]);
             $jsonContentUrl = $this->generateUrl('api_form_json', ['uuid' => $formSchema->getId()]);
 
@@ -110,7 +110,7 @@ class ApiController extends AbstractController
             throw $this->createNotFoundException('Formulaire non trouvé');
         }
 
-        // Incrémenter le compteur d'accès
+        // Increment access counter
         $formSchema->incrementAccessCount();
         $entityManager->flush();
 
