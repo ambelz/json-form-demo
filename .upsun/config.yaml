@@ -24,10 +24,19 @@ applications:
 
     # Mounts define directories that are writable after the build is complete.
     # More information: https://docs.upsun.com/create-apps/app-reference/single-runtime-image.html#mounts
-    # mounts:
-    #   "/var/uploads": # Represents the path in the app.
-    #     source: "storage" # "storage" sources are unique to the app, but shared among instances of the app. "service" sources can be shared among apps.
-    #     source_path: "var/uploads" # The subdirectory within the mounted disk (the source) where the mount should point.
+    mounts:
+      "/var/uploads": # Represents the path in the app.
+        source: "storage" # "storage" sources are unique to the app, but shared among instances of the app. "service" sources can be shared among apps.
+        source_path: "var/uploads" # The subdirectory within the mounted disk (the source) where the mount should point.
+      "/var/cache":
+        source: "storage"
+        source_path: "var/cache"
+      "/var/logs":
+        source: "storage"
+        source_path: "var/logs"
+      "/var/sessions":
+        source: "storage"
+        source_path: "var/sessions"
 
     # The web key configures the web server running in front of your app.
     # More information: https://docs.upsun.com/create-apps/app-reference/single-runtime-image.html#web
@@ -68,10 +77,10 @@ applications:
     # access:
 
     # Variables to control the environment. More information: https://docs.upsun.com/create-apps/app-reference/single-runtime-image.html#variables
-    # variables:
-    #   env:
-    #     # Add environment variables here that are static.
-    #     XDEBUG_MODE: off
+    variables:
+      env:
+        N_PREFIX: "/app/.global"
+        
 
     # Outbound firewall rules for the application. More information: https://docs.upsun.com/create-apps/app-reference/single-runtime-image.html#firewall
     # firewall:
@@ -95,19 +104,31 @@ applications:
       # The build hook is run after any build flavor.
       # More information: https://docs.upsun.com/create-apps/hooks/hooks-comparison.html#build-hook
       build: |
-        set -eux
-        composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader --no-dev
-        
-      # The deploy hook is run after the app container has been started, but before it has started accepting requests.
-      # More information: https://docs.upsun.com/create-apps/hooks/hooks-comparison.html#deploy-hook
-      deploy: |
-        set -eux
-        # echo 'Put your deploy command here'
-        
+        set -x -e
 
+        curl -s https://get.symfony.com/cloud/configurator | bash
+
+        symfony-build        
+
+      deploy: |
+        set -x -e
+        symfony-deploy 
+      # if [ "PLATFORM_ENVIRONMENT_TYPE" != "production" ]; then
+      #   symfony console app:dev:anonymize
+      # fi    
+        
       # The post_deploy hook is run after the app container has been started and after it has started accepting requests.
       # More information: https://docs.upsun.com/create-apps/hooks/hooks-comparison.html#deploy-hook
       # post_deploy: |
+
+    # Customizations to your PHP or Lisp runtime. More information: https://docs.upsun.com/create-apps/app-reference/single-runtime-image.html#runtime
+    runtime:
+      php:
+        # OPcache Configuration
+        'opcache.enable': 1
+        'opcache.memory_consumption': 256 # Default is 128, increase if you have many files
+        'opcache.max_accelerated_files': 20000 # Default is 10000, Symfony apps can have many files
+        'opcache.validate_timestamps': 0 # For production, set to 0 and rely on deploy hook to clear cache
 
     # Scheduled tasks for the app.
     # More information: https://docs.upsun.com/create-apps/app-reference/single-runtime-image.html#crons
