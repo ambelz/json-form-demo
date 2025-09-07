@@ -112,8 +112,8 @@ applications:
 
       deploy: |
         set -x -e
-        symfony console doctrine:database:drop --force
-        
+        symfony console doctrine:database:create
+        symfony console doctrine:schema:update --force
         symfony-deploy 
       # if [ "PLATFORM_ENVIRONMENT_TYPE" != "production" ]; then
       #   symfony console app:dev:anonymize
